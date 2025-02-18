@@ -60,6 +60,8 @@ def contar_personas_en_espacio(espacio):
 # Crear personas
 persona1 = Persona("Adriana", 2006, "Española", "Tenis", "Melendi", 0, 0)
 persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
+persona3=Persona("Fran", 2006, "Epañola", "Badmington", "Depol",8,2  )
+perosna4=Persona("Paula", 2006,"Española", "Baile", "Quevedo", 4, 6)
 
 # Mover a las personas
 persona1.mover_a(10, 15)
