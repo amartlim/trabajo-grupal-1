@@ -1,0 +1,88 @@
+import math
+
+# Clase Persona
+class Persona:
+    def __init__(self, nombre, año_nacimiento, nacionalidad, hobby, cantante_favorito, coord_x=0, coord_y=0):
+        self.nombre = nombre
+        self.año_nacimiento = año_nacimiento
+        self.edad = 2025 - año_nacimiento
+        self.nacionalidad = nacionalidad
+        self.hobby = hobby
+        self.cantante_favorito = cantante_favorito
+        self.coord_x = coord_x
+        self.coord_y = coord_y
+
+    # Método para saludar
+    def saludar(self):
+        print(f"Hola, mi nombre es {self.nombre} y nací en el año {self.año_nacimiento} y tengo {self.edad} años.")
+
+    # Método para mover la persona a una nueva ubicación
+    def mover_a(self, x, y):
+        self.coord_x = x
+        self.coord_y = y
+        print(f"{self.nombre} se ha movido a la posición ({self.coord_x}, {self.coord_y}).")
+
+# Clase Espacio
+class Espacio:
+    def __init__(self, nombre):
+        self.nombre = nombre
+        self.lista_personas = []
+
+    # Método para agregar una persona al espacio
+    def agregar_persona(self, persona):
+        self.lista_personas.append(persona)
+        print(f"{persona.nombre} ha sido añadido/a al espacio '{self.nombre}'.")
+
+    # Método para listar las personas que están en el espacio
+    def listar_personas(self):
+        if self.lista_personas:
+            print(f"Personas en el espacio '{self.nombre}':")
+            for persona in self.lista_personas:
+                print(f"- {persona.nombre} en la posición ({persona.coord_x}, {persona.coord_y})")
+        else:
+            print(f"No hay personas en el espacio '{self.nombre}'.")
+
+# Función para calcular la distancia euclidiana entre dos personas
+def calcular_distancia(persona1, persona2):
+    distancia = math.sqrt((persona1.coord_x - persona2.coord_x) ** 2 + (persona1.coord_y - persona2.coord_y) ** 2)
+    return distancia
+
+# Función para verificar si dos personas están en la misma posición
+def estan_en_misma_posicion(persona1, persona2):
+    return persona1.coord_x == persona2.coord_x and persona1.coord_y == persona2.coord_y
+
+# Función para contar cuántas personas hay en un espacio
+def contar_personas_en_espacio(espacio):
+    return len(espacio.lista_personas)
+
+# Ejemplo de uso:
+
+# Crear personas
+persona1 = Persona("Adriana", 2006, "Española", "Tenis", "Melendi", 0, 0)
+persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
+
+# Mover a las personas
+persona1.mover_a(10, 15)
+persona2.mover_a(3, 7)
+
+# Crear un espacio y agregar personas
+parque = Espacio("Parque")
+parque.agregar_persona(persona1)
+parque.agregar_persona(persona2)
+
+# Listar personas en el espacio
+parque.listar_personas()
+
+# Calcular la distancia entre dos personas
+distancia = calcular_distancia(persona1, persona2)
+print(f"La distancia entre {persona1.nombre} y {persona2.nombre} es {distancia:.2f} unidades.")
+
+# Verificar si están en la misma posición
+if estan_en_misma_posicion(persona1, persona2):
+    print(f"{persona1.nombre} y {persona2.nombre} están en la misma posición.")
+else:
+    print(f"{persona1.nombre} y {persona2.nombre} están en posiciones diferentes.")
+
+# Contar personas en el espacio
+total_personas = contar_personas_en_espacio(parque)
+print(f"El número de personas en el espacio '{parque.nombre}' es {total_personas}.")
