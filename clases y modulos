@@ -43,12 +43,14 @@ class Espacio:
             print(f"No hay personas en el espacio '{self.nombre}'.")
 
 # Función para calcular la distancia euclidiana entre dos personas
-def calcular_distancia(persona1, persona2):
-    distancia = math.sqrt((persona1.coord_x - persona2.coord_x) ** 2 + (persona1.coord_y - persona2.coord_y) ** 2)
-    return distancia
+def calcular_distancia(persona1, persona2, persona3, persona4):
+    distancia_1_3 = math.sqrt((persona1.coord_x - persona3.coord_x) ** 2 + (persona1.coord_y - persona3.coord_y) ** 2)
+    distancia_2_4 =  math.sqrt((persona2.coord_x - persona4.coord_x) ** 2 + (persona2.coord_y - persona4.coord_y) ** 2)
+    return distancia_1_3, distancia_2_4
+    
 
 # Función para verificar si dos personas están en la misma posición
-def estan_en_misma_posicion(persona1, persona2):
+def estan_en_misma_posicion(persona1, persona2, persona3, persona4):
     return persona1.coord_x == persona2.coord_x and persona1.coord_y == persona2.coord_y
 
 # Función para contar cuántas personas hay en un espacio
@@ -60,10 +62,14 @@ def contar_personas_en_espacio(espacio):
 # Crear personas
 persona1 = Persona("Adriana", 2006, "Española", "Tenis", "Melendi", 0, 0)
 persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
+persona3 = Persona("Fran", 2006, "Español", "Badmington", "Dedpol", 8, 5)
+persona4 = Persona("Paula", 2006, "Española", "Baile", "Quevedo", 4, 6)
 
 # Mover a las personas
 persona1.mover_a(10, 15)
 persona2.mover_a(3, 7)
+persona3.mover_a(1,1)
+persona4.mover_a(7,3)
 
 # Crear un espacio y agregar personas
 parque = Espacio("Parque")
