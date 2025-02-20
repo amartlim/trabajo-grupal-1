@@ -85,6 +85,8 @@ def contar_personas_en_espacio(espacio):
 # Crear personas
 persona1 = Persona("Adriana", 2006, "Española", "Tenis", "Melendi", 0, 0)
 persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
+persona3=Persona("Fran", 2006, "Epañola", "Badmington", "Depol",8,2  )
+persona4=Persona("Paula", 2006,"Española", "Baile", "Quevedo", 4, 6)
 
 # Mover a las personas
 persona1.mover_a(10, 15)
@@ -94,6 +96,7 @@ persona2.mover_a(3, 7)
 parque = Espacio("Parque")
 parque.agregar_persona(persona1)
 parque.agregar_persona(persona2)
+<<<<<<< HEAD
 
 parque.repartir_monedas(5, 10, 10)
 persona1.mover_a(3, 7)
@@ -103,6 +106,10 @@ persona1.recoger_moneda(parque.monedas)
 persona2.recoger_moneda(parque.monedas)
 
 
+=======
+parque.agregar_persona(persona3)
+parque.agregar_persona(persona4)
+>>>>>>> 4c15519c941e4ddb62ffb7ea7faee1564142bac5
 # Listar personas en el espacio
 parque.listar_personas()
 
