@@ -1,4 +1,5 @@
 import math
+import random
 
 # Clase Persona
 class Persona:
@@ -11,6 +12,7 @@ class Persona:
         self.cantante_favorito = cantante_favorito
         self.coord_x = coord_x
         self.coord_y = coord_y
+        self.monedas = 0 
 
     # Método para saludar
     def saludar(self):
@@ -21,6 +23,21 @@ class Persona:
         self.coord_x = x
         self.coord_y = y
         print(f"{self.nombre} se ha movido a la posición ({self.coord_x}, {self.coord_y}).")
+
+    # Recoger moneda 
+    def recoger_moneda(self, monedas): 
+        for moneda in monedas:
+            if self.coord_x == moneda.coord_x and self.coord_y == moneda.coord_y:
+                self.monedas += 1
+                monedas.remove(moneda)
+                print(f"{self.nombre} ha recogido una moneda. Ahora tiene {self.monedas} monedas.")
+
+
+# Clase Moneda
+class Moneda: 
+    def __init__(self, coord_x, coord_y):
+        self.coord_x = coord_x 
+        self.coord_y = coord_y
 
 # Clase Espacio
 class Espacio:
@@ -41,6 +58,14 @@ class Espacio:
                 print(f"- {persona.nombre} en la posición ({persona.coord_x}, {persona.coord_y})")
         else:
             print(f"No hay personas en el espacio '{self.nombre}'.")
+
+    def repartir_monedas(self, cantidad, max_x, max_y):
+        for _ in range(cantidad):
+            x = random.randint(0, max_x)
+            y = random.randint(0, max_y)
+            self.monedas.append(Moneda(x, y))
+        print(f" Se han distribuido {cantidad} monedas en el espacio '{self.nombre}'.")
+
 
 # Función para calcular la distancia euclidiana entre dos personas
 def calcular_distancia(persona1, persona2):
@@ -69,6 +94,14 @@ persona2.mover_a(3, 7)
 parque = Espacio("Parque")
 parque.agregar_persona(persona1)
 parque.agregar_persona(persona2)
+
+parque.repartir_monedas(5, 10, 10)
+persona1.mover_a(3, 7)
+persona2.mover_a(3, 7)
+
+persona1.recoger_moneda(parque.monedas)
+persona2.recoger_moneda(parque.monedas)
+
 
 # Listar personas en el espacio
 parque.listar_personas()
