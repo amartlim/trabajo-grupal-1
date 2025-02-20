@@ -41,9 +41,10 @@ class Moneda:
 
 # Clase Espacio
 class Espacio:
-    def __init__(self, nombre):
+    def __init__(self, nombre,monedas):
         self.nombre = nombre
         self.lista_personas = []
+        self.monedas=monedas
 
     # Método para agregar una persona al espacio
     def agregar_persona(self, persona):
@@ -80,7 +81,7 @@ def estan_en_misma_posicion(persona1, persona2, persona3, persona4):
 
 # Función para contar cuántas personas hay en un espacio
 def contar_personas_en_espacio(espacio):
-    return len(espacio.lista_personas)
+    return len(espacio.lista_personas) 
 
 # Ejemplo de uso:
 
