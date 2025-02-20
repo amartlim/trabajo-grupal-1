@@ -1,4 +1,5 @@
 import math
+import random
 
 # Clase Persona
 class Persona:
@@ -11,6 +12,7 @@ class Persona:
         self.cantante_favorito = cantante_favorito
         self.coord_x = coord_x
         self.coord_y = coord_y
+        self.monedas = 0 
 
     # Método para saludar
     def saludar(self):
@@ -21,6 +23,21 @@ class Persona:
         self.coord_x = x
         self.coord_y = y
         print(f"{self.nombre} se ha movido a la posición ({self.coord_x}, {self.coord_y}).")
+
+    # Recoger moneda 
+    def recoger_moneda(self, monedas): 
+        for moneda in monedas:
+            if self.coord_x == moneda.coord_x and self.coord_y == moneda.coord_y:
+                self.monedas += 1
+                monedas.remove(moneda)
+                print(f"{self.nombre} ha recogido una moneda. Ahora tiene {self.monedas} monedas.")
+
+
+# Clase Moneda
+class Moneda: 
+    def __init__(self, coord_x, coord_y):
+        self.coord_x = coord_x 
+        self.coord_y = coord_y
 
 # Clase Espacio
 class Espacio:
@@ -42,6 +59,14 @@ class Espacio:
         else:
             print(f"No hay personas en el espacio '{self.nombre}'.")
 
+    def repartir_monedas(self, cantidad, max_x, max_y):
+        for _ in range(cantidad):
+            x = random.randint(0, max_x)
+            y = random.randint(0, max_y)
+            self.monedas.append(Moneda(x, y))
+        print(f" Se han distribuido {cantidad} monedas en el espacio '{self.nombre}'.")
+
+
 # Función para calcular la distancia euclidiana entre dos personas
 def calcular_distancia(persona1, persona2, persona3, persona4):
     distancia_1_3 = math.sqrt((persona1.coord_x - persona3.coord_x) ** 2 + (persona1.coord_y - persona3.coord_y) ** 2)
@@ -62,8 +87,13 @@ def contar_personas_en_espacio(espacio):
 # Crear personas
 persona1 = Persona("Adriana", 2006, "Española", "Tenis", "Melendi", 0, 0)
 persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
+<<<<<<< HEAD
 persona3 = Persona("Fran", 2006, "Español", "Badmington", "Dedpol", 8, 5)
 persona4 = Persona("Paula", 2006, "Española", "Baile", "Quevedo", 4, 6)
+=======
+persona3=Persona("Fran", 2006, "Epañola", "Badmington", "Depol",8,2  )
+persona4=Persona("Paula", 2006,"Española", "Baile", "Quevedo", 4, 6)
+>>>>>>> c9af489320c6eed69389e4f59dc58212634d3c49
 
 # Mover a las personas
 persona1.mover_a(10, 15)
@@ -75,7 +105,20 @@ persona4.mover_a(7,3)
 parque = Espacio("Parque")
 parque.agregar_persona(persona1)
 parque.agregar_persona(persona2)
+<<<<<<< HEAD
 
+parque.repartir_monedas(5, 10, 10)
+persona1.mover_a(3, 7)
+persona2.mover_a(3, 7)
+
+persona1.recoger_moneda(parque.monedas)
+persona2.recoger_moneda(parque.monedas)
+
+
+=======
+parque.agregar_persona(persona3)
+parque.agregar_persona(persona4)
+>>>>>>> 4c15519c941e4ddb62ffb7ea7faee1564142bac5
 # Listar personas en el espacio
 parque.listar_personas()
 
