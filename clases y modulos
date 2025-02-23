@@ -1,55 +1,54 @@
 import math
 import random
+from utils import *
+
 
 # Clase Persona
 class Persona:
-    def __init__(self, nombre, año_nacimiento, nacionalidad, hobby, cantante_favorito, coord_x=0, coord_y=0):
+    def __init__(self, nombre, año_nacimiento, nacionalidad, hobby, cantante_favorito, pos_x=0, pos_y=0):
         self.nombre = nombre
         self.año_nacimiento = año_nacimiento
         self.edad = 2025 - año_nacimiento
         self.nacionalidad = nacionalidad
         self.hobby = hobby
         self.cantante_favorito = cantante_favorito
-        self.coord_x = coord_x
-        self.coord_y = coord_y
-        self.monedas = 0 
+        self.pos_x = pos_x
+        self.pos_y = pos_y
+        self.monedero = 0 
 
     # Método para saludar
     def saludar(self):
         print(f"Hola, mi nombre es {self.nombre} y nací en el año {self.año_nacimiento} y tengo {self.edad} años.")
 
-    # Método para mover la persona a una nueva ubicación
-    def mover_a(self, x, y):
-        self.coord_x = x
-        self.coord_y = y
-        print(f"{self.nombre} se ha movido a la posición ({self.coord_x}, {self.coord_y}).")
 
-    # Recoger moneda 
-    def recoger_moneda(self, monedas): 
-        for moneda in monedas:
-            if self.coord_x == moneda.coord_x and self.coord_y == moneda.coord_y:
-                self.monedas += 1
-                monedas.remove(moneda)
-                print(f"{self.nombre} ha recogido una moneda. Ahora tiene {self.monedas} monedas.")
-
+   
 
 # Clase Moneda
 class Moneda: 
-    def __init__(self, coord_x, coord_y):
-        self.coord_x = coord_x 
-        self.coord_y = coord_y
+    def __init__(self, pos_x, pos_y):
+        self.pos_x = pos_x 
+        self.pos_y = pos_y
 
 # Clase Espacio
 class Espacio:
-    def __init__(self, nombre,monedas):
+    def __init__(self, nombre):
         self.nombre = nombre
         self.lista_personas = []
-        self.monedas=monedas
+        self.lista_monedas=[]
 
     # Método para agregar una persona al espacio
     def agregar_persona(self, persona):
         self.lista_personas.append(persona)
         print(f"{persona.nombre} ha sido añadido/a al espacio '{self.nombre}'.")
+    
+    def agregar_monedas(self, moneda):
+        self.lista_monedas.append(moneda)
+        
+    
+    def devolver_lista_personas(self):
+        return self.lista_personas
+    def devolver_lista_monedas(self):
+        return self.lista_monedas
 
     # Método para listar las personas que están en el espacio
     def listar_personas(self):
@@ -60,20 +59,16 @@ class Espacio:
         else:
             print(f"No hay personas en el espacio '{self.nombre}'.")
 
-    def repartir_monedas(self, cantidad, max_x, max_y):
-        for _ in range(cantidad):
-            x = random.randint(0, max_x)
-            y = random.randint(0, max_y)
-            self.monedas.append(Moneda(x, y))
-        print(f" Se han distribuido {cantidad} monedas en el espacio '{self.nombre}'.")
+
 
 
 # Función para calcular la distancia euclidiana entre dos personas
-def calcular_distancia(persona1, persona2, persona3, persona4):
-    distancia_1_3 = math.sqrt((persona1.coord_x - persona3.coord_x) ** 2 + (persona1.coord_y - persona3.coord_y) ** 2)
-    distancia_2_4 =  math.sqrt((persona2.coord_x - persona4.coord_x) ** 2 + (persona2.coord_y - persona4.coord_y) ** 2)
-    return distancia_1_3, distancia_2_4
-    
+
+#def calcular_distancia(persona1, persona2, persona3, persona4):
+#    distancia_1_3 = math.sqrt((persona1.coord_x - persona3.coord_x) ** 2 + (persona1.coord_y - persona3.coord_y) ** 2)
+#    distancia_2_4 =  math.sqrt((persona2.coord_x - persona4.coord_x) ** 2 + (persona2.coord_y - persona4.coord_y) ** 2)
+#    return distancia_1_3, distancia_2_4
+   
 
 # Función para verificar si dos personas están en la misma posición
 def estan_en_misma_posicion(persona1, persona2, persona3, persona4):
@@ -91,14 +86,16 @@ persona2 = Persona("Manuel", 2004, "Español", "Fútbol", "Estopa", 5, 5)
 persona3=Persona("Fran", 2006, "Epañola", "Badmington", "Depol",8,2  )
 persona4=Persona("Paula", 2006,"Española", "Baile", "Quevedo", 4, 6)
 
-# Mover a las personas
-persona1.mover_a(10, 15)
-persona2.mover_a(3, 7)
-persona3.mover_a(1,1)
-persona4.mover_a(7,3)
+moneda1=Moneda(3,6)
+moneda2=Moneda(7,2)
+moneda3=Moneda(4,9)
+moneda4=Moneda(8,2)
+moneda5=Moneda(6,5)
+
+
 
 # Crear un espacio y agregar personas
-parque = Espacio("Parque")
+'''parque = Espacio("Parque")
 parque.agregar_persona(persona1)
 parque.agregar_persona(persona2)
 
@@ -109,7 +106,8 @@ persona2.mover_a(3, 7)
 persona1.recoger_moneda(parque.monedas)
 persona2.recoger_moneda(parque.monedas)
 
-
+'''
+'''
 parque.agregar_persona(persona3)
 parque.agregar_persona(persona4)
 # Listar personas en el espacio
@@ -128,3 +126,33 @@ else:
 # Contar personas en el espacio
 total_personas = contar_personas_en_espacio(parque)
 print(f"El número de personas en el espacio '{parque.nombre}' es {total_personas}.")
+'''
+
+Espacio1=Espacio("Parque")
+Espacio1.agregar_persona(persona1)
+Espacio1.agregar_persona(persona2)
+Espacio1.agregar_persona(persona3)
+Espacio1.agregar_persona(persona4)
+
+Espacio1.agregar_monedas(moneda1)
+Espacio1.agregar_monedas(moneda2)
+Espacio1.agregar_monedas(moneda3)
+Espacio1.agregar_monedas(moneda4)
+Espacio1.agregar_monedas(moneda5)
+#lista_personas=Espacio1.devolver_lista_personas()
+#print(lista_personas)
+#print(Espacio1.devolver_lista_monedas())
+persona_recoger_moneda(Espacio1.devolver_lista_personas(), Espacio1.devolver_lista_monedas())
+for x in range(0,100):
+    mover_todas_las_personas(Espacio1.devolver_lista_personas())
+    persona_recoger_moneda(Espacio1.devolver_lista_personas(), Espacio1.devolver_lista_monedas())
+    print("riqueza total :",riqueza_total(Espacio1.devolver_lista_personas()))
+    
+#print("el monedero de la persona 3 es :",persona3.monedero)
+#print("el monedero de la perona 1 es :",cuantas_monedas_tiene_persona(persona1))
+#print("riqueza total :",riqueza_total(Espacio1.devolver_lista_personas()))
+#mover_todas_las_personas(Espacio1.devolver_lista_personas())
+#distancia(persona1,persona2)
+#distancia(persona1,persona3)
+#distancia(persona1,persona4)
+#distancia(persona2,persona3)
