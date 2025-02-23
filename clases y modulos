@@ -143,11 +143,16 @@ Espacio1.agregar_monedas(moneda5)
 #print(lista_personas)
 #print(Espacio1.devolver_lista_monedas())
 persona_recoger_moneda(Espacio1.devolver_lista_personas(), Espacio1.devolver_lista_monedas())
-for x in range(0,100):
+for x in range(0,10):
     mover_todas_las_personas(Espacio1.devolver_lista_personas())
     persona_recoger_moneda(Espacio1.devolver_lista_personas(), Espacio1.devolver_lista_monedas())
     print("riqueza total :",riqueza_total(Espacio1.devolver_lista_personas()))
-    
+    combate(persona1,persona2)
+    combate(persona1,persona3)
+    combate(persona1,persona4)
+    combate(persona2,persona3)
+    combate(persona2,persona4)
+    combate(persona3,persona4)
 #print("el monedero de la persona 3 es :",persona3.monedero)
 #print("el monedero de la perona 1 es :",cuantas_monedas_tiene_persona(persona1))
 #print("riqueza total :",riqueza_total(Espacio1.devolver_lista_personas()))

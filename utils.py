@@ -1,11 +1,11 @@
 import math
 import random
 
-def distancia(Persona1, Persona2):
-        calculo=math.sqrt((Persona2.pos_x-Persona1.pos_x)**2 + (Persona2.pos_y-Persona1.pos_y)**2)
-        print(f"La distancia entre {Persona1.nombre} y {Persona2.nombre} es {round(calculo,2)} metro/s")
+def distancia(persona1, persona2):
+        calculo=math.sqrt((persona2.pos_x-persona1.pos_x)**2 + (persona2.pos_y-persona1.pos_y)**2)
+        print(f"La distancia entre {persona1.nombre} y {persona2.nombre} es {round(calculo,2)} metro/s")
         if calculo==0:
-            print(f"{Persona1.nombre} y {Persona2.nombre} estan en el mismo sitio, cruzan miradas, eso solo significa una cosa: COMBATE POKEMOOONN!!!! ")
+            print(f"{persona1.nombre} y {persona2.nombre} estan en el mismo sitio, cruzan miradas, eso solo significa una cosa: COMBATE POKEMOOONN!!!! ")
             
 def mover_todas_las_personas(listas_personas):  
     for i in listas_personas:
@@ -27,3 +27,7 @@ def riqueza_total(lista_personas):
     for p in lista_personas:
         suma+=p.monedero 
     return suma    
+
+def combate(persona1,persona2):
+    if persona1.pos_x==persona2.pos_x and persona1.pos_y==persona2.pos_y:
+        print("combate a muerte")
