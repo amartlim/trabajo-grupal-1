@@ -31,3 +31,14 @@ def riqueza_total(lista_personas):
 def combate(persona1,persona2):
     if persona1.pos_x==persona2.pos_x and persona1.pos_y==persona2.pos_y:
         print("combate a muerte")
+        
+def riqueza_total_genero(lista_personas):
+    m=0
+    f=0
+    for p in lista_personas:
+        if p.genero== "M":
+            m+=p.monedero 
+        else:
+            f+=p.monedero
+    return m,f
+    
